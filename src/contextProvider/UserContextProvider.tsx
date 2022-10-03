@@ -1,23 +1,21 @@
+/**
+ * Wraps the User container and facilitates data acess - like store manager
+ * clients directly access data from this context
+ */
 import {
   createContext,
   ReactNode,
-  useCallback,
-  useEffect,
   useMemo,
-  useReducer,
-  useRef,
   useState,
 } from 'react';
 import { SubmitHandler } from 'react-hook-form';
-import { AnyZodObject } from 'zod';
 import { AddressEnum } from '../enum/AddressEnum';
-import { IAddress, IUser, RegisterAddressInput, RegisterInput } from '../types';
-
+import { IAddress, IUser, RegisterInput } from '../types';
 interface Props {
   children: ReactNode;
 }
 
-// Export socket context for consumers
+// Export User context for consumers
 export const UserContext = createContext<any>({});
 
 const UserContextProvider: React.FC<Props> = ({ children }) => {
@@ -33,22 +31,13 @@ const UserContextProvider: React.FC<Props> = ({ children }) => {
     name: '',
     email: '',
     password: '',
-  }
+  };
   const [address, setAddress] = useState<IAddress>(iniAddress);
 
   const [userDetails, setUserDetails] = useState<IUser>(iniUserDetails);
 
-  useEffect(() => {
-    console.log('userDetails ', userDetails);
-  }, [userDetails]);
-
   const userInformationSubmitHandler: SubmitHandler<RegisterInput> = async (values) => {
-    console.log('userInformationSubmitHandler ', values);
     setUserDetails(values);
-  };
-
-  const addressSubmitHandler: SubmitHandler<RegisterAddressInput> = (values) => {
-    console.log(values);
   };
 
   const formatAddress = (receivedAddr: any) => {
@@ -57,9 +46,6 @@ const UserContextProvider: React.FC<Props> = ({ children }) => {
       const [address2 = '', countryCode = ''] = formatted_address?.split(',');
 
       const postalCode = countryCode?.trim().split(' ')[1];
-
-      console.log('formatAddress ', address1);
-      console.log('formatAddress 2', address2, postalCode);
 
       setAddress({
         address1,
@@ -73,23 +59,19 @@ const UserContextProvider: React.FC<Props> = ({ children }) => {
   };
 
   const handleGoogleAddress = (selectedAddress: any) => {
-    console.log('updating address in context ', selectedAddress);
     formatAddress(selectedAddress);
-    
   };
 
   const resetData = () => {
     setUserDetails(iniUserDetails);
-    setAddress(iniAddress)
-  }
+    setAddress(iniAddress);
+  };
 
   const renderChild = useMemo(() => {
     return (
       <UserContext.Provider
         value={{
-          provider: 'abcd',
           userInformationSubmitHandler,
-          addressSubmitHandler,
           handleGoogleAddress,
           address,
           userDetails,

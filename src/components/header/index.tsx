@@ -8,6 +8,8 @@ const StyledHeader = styled.h2`
   color: white;
 `;
 
-const Header: React.FC = () => <StyledHeader id="appHeader">{CommonEnum.USER_INFORMATION}</StyledHeader>;
+const Header: React.FC = () => (
+  <StyledHeader id="appHeader">{CommonEnum.HEADER}</StyledHeader>
+);
 
 export default Header;

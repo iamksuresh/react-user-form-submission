@@ -6,7 +6,7 @@ import Header from '../../../components/header';
 describe('Test Header', () => {
   it('renders Application Header on load', () => {
     const { container } = render(<Header />);
-    const HeaderEle = screen.getByText(CommonEnum.USER_INFORMATION);
+    const HeaderEle = screen.getByText(CommonEnum.HEADER);
     expect(HeaderEle).toBeInTheDocument();
   });
 

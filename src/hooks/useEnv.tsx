@@ -1,12 +1,12 @@
 // Acccess env variables here
 export const useEnv = () => {
-  const FXPairs = process.env.REACT_APP_INSTRUMENT_ID_ARRAY;
-  const ThrottleLimit = process.env.REACT_APP_THROTTLE_TIME
-    ? parseInt(process.env.REACT_APP_THROTTLE_TIME, 10)
-    : 3000;
+  const PlacesSearchFields = process.env.REACT_APP_API_SEARCH_FIELDS 
+  ? process.env.REACT_APP_API_SEARCH_FIELDS.split(',')
+  :['formatted_address', 'name'];
+  const RestrictedCountry = process.env.REACT_APP_RESTRICTED_COUNTRY ?? 'sg'
 
   return {
-    FXPairs,
-    ThrottleLimit,
+    PlacesSearchFields,
+    RestrictedCountry
   };
 };

@@ -1,34 +1,36 @@
-import { Box, FormControlLabel, FormGroup, FormHelperText, Typography } from '@mui/material';
+// tslint:disable jsx-no-lambda
+import { Box } from '@mui/material';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
-import { literal, object, string, TypeOf } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FC, forwardRef, useContext, useEffect, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 import { LoadingButton } from '@mui/lab';
 
 import FormInput from '../common/FormInput';
 import { InformationFormValidationSchema } from '../../schema/FormValidationSchema';
 import { RegisterInput } from '../../types';
-import { useParams, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { UserContext } from '../../contextProvider/UserContextProvider';
-import { Link } from 'react-router-dom';
 import { RoutesEnum } from '../../enum/RoutesEnum';
 import { useNavigate } from 'react-router-dom';
-import ImageUploader from '../imageUploader';
+import { CommonEnum } from '../../enum/CommonEnum';
 
 const InformationForm: FC<any> = (props) => {
-  let { pathname } = useLocation();
+  const { pathname } = useLocation();
   const { userInformationSubmitHandler, userDetails } = useContext(UserContext);
 
-  const { state: locationState } = useLocation();
-
   const { name: contextName, password: contextPassword, email: contextEmail } = userDetails;
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // const [loading, setLoading] = useState(false);
-  const [isDisabled, setIsdisabled] = useState(true);
   const [name, setName] = useState(contextName);
   const [email, setEmail] = useState(contextEmail);
   const [password, setPassword] = useState(contextPassword);
+  const [shldDisable, setShldDisable] = useState(false);
+
+  useEffect(() => {
+    if (pathname.includes(RoutesEnum.FORM_SUBMIT)) {
+      setShldDisable(true);
+    }
+  }, []);
 
   const methods = useForm<RegisterInput>({
     resolver: zodResolver(InformationFormValidationSchema),
@@ -49,21 +51,18 @@ const InformationForm: FC<any> = (props) => {
   }, [isSubmitSuccessful]);
 
   const onSubmitHandler: SubmitHandler<RegisterInput> = async (data) => {
-    // setLoading(true)
-    console.log('data ', data);
     await userInformationSubmitHandler(data);
-    navigate(`/userform/${RoutesEnum.ADDRESS}`, {
+    navigate(`${RoutesEnum.USER}/${RoutesEnum.ADDRESS}`, {
       replace: true,
     });
   };
 
   return (
     <>
-      <ImageUploader />
       <FormProvider {...methods}>
         <Box
           component="form"
-          noValidate
+          noValidate={true}
           autoComplete="off"
           onSubmit={handleSubmit(onSubmitHandler)}
         >
@@ -71,44 +70,49 @@ const InformationForm: FC<any> = (props) => {
             name="name"
             value={name}
             onChange={(e) => (setName(e.target.value), setValue('name', e.target.value))}
-            required
-            fullWidth
+            required={true}
+            fullWidth={true}
+            disabled={shldDisable}
             label="Name"
-            sx={{ mb: 2 }}
           />
 
           <FormInput
             name="email"
-            required
-            fullWidth
+            required={true}
+            fullWidth={true}
             label="Email Address"
             type="email"
             value={email}
+            disabled={shldDisable}
             onChange={(e) => (setEmail(e.target.value), setValue('email', e.target.value))}
             sx={{ mb: 2 }}
           />
           <FormInput
             name="password"
-            required
-            fullWidth
+            required={true}
+            fullWidth={true}
             label="Password"
             type="password"
             value={password}
-            onChange={(e) => (setPassword(e.target.value), setValue('password', e.target.value))}
+            disabled={shldDisable}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setValue('password', e.target.value);
+            }}
             sx={{ mb: 2 }}
           />
 
           {!pathname.includes(RoutesEnum.FORM_SUBMIT) && (
-            <LoadingButton
-              variant="contained"
-              fullWidth
-              type="submit"
-              // loading={loading}
-              sx={{ py: '0.8rem', mt: '1rem' }}
-              // disabled={Object.keys(errors).length > 0 || !isDirty}
-            >
-              Add Address
-            </LoadingButton>
+            <div style={{ textAlign: 'center' }}>
+              <LoadingButton
+                variant="contained"
+                size="medium"
+                type="submit"
+                sx={{ py: '0.8rem', mt: '1rem' }}
+              >
+                {CommonEnum.ADD_ADDRESS}
+              </LoadingButton>
+            </div>
           )}
         </Box>
       </FormProvider>

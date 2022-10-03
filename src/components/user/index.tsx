@@ -1,47 +1,31 @@
-import { Button } from '@mui/material';
-import React, { FC, useContext, useEffect, useRef } from 'react';
-import { Box, FormControlLabel, FormGroup, FormHelperText, Typography } from '@mui/material';
-import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
-import { Navigate, Outlet, useParams } from 'react-router';
-import { useLocation } from 'react-router-dom';
-import { Route, Routes } from 'react-router';
+/**
+ * Container component for User Form
+ * Context API for accessing data between varios sub routes
+ */
+import React, { FC } from 'react';
+import { Box } from '@mui/material';
+import {  Outlet } from 'react-router';
 import UserContextProvider, { UserContext } from '../../contextProvider/UserContextProvider';
-import { RoutesEnum } from '../../enum/RoutesEnum';
-import FormActions from './FormActions';
-import { RegisterInput } from '../../types';
 
-const UserFormSubmission: FC<any> = (props) => {
-  let x = useLocation();
+import styled from 'styled-components';
+import { Grid } from '@mui/material';
 
-  // useEffect(() => {
-  //   console.log('inside user routes ', x);
-  // }, []);
+const StyledBox = styled(Box)`
+  width: 65%;
+  margin: auto;
+  padding: 10px;
+`;
 
-  const postData = () => {
-    console.log('inside user routes -> postData ');
-  };
-
+const UserFormSubmission: FC = () => {
   return (
     <UserContextProvider>
-      <>
-        <Box  sx={{ maxWidth: '30rem' }}>
-          
+      <Grid id="userContainer" container={true} direction="row" spacing={2}>
+        <StyledBox>
           <Outlet />
-          {/* <FormActions postData={postData} /> */}
-        </Box>
-      </>
+        </StyledBox>
+      </Grid>
     </UserContextProvider>
   );
 };
 
 export default UserFormSubmission;
-
-{
-  /* <Routes>
-        <Route path={RoutesEnum.FORM1} element={renderComponent()} />
-
-        <Route path={RoutesEnum.FORM2} element={<>USER - form 2 landing page</>} />
-
-        <Route path={RoutesEnum.REVIEW_FORM} element={<>USER - final landing page</>} />
-      </Routes> */
-}

@@ -1,4 +1,4 @@
-import { literal, number, object, string, TypeOf } from 'zod';
+import {  number, object, string } from 'zod';
 
 const InformationFormValidationSchema = object({
   name: string().min(1, 'Name is required').max(32, 'Name must be less than 100 characters'),
@@ -10,14 +10,11 @@ const InformationFormValidationSchema = object({
 
 const AdressFormValidationSchema = object({
   address1: string().min(1, 'Address Line 1 is required'),
-  // .max(32, 'Name must be less than 100 characters'),
   address2: string().min(1, 'Address Line 2 is required'),
-  //.email('Email is invalid'),
   city: string().min(1, 'City is required'),
   state: string().min(1, 'state is required'),
   country: string().min(1, 'Country is required'),
   postalcode: number().int(),
-  //name: string().min(1, 'Name is required').max(32, 'Name must be less than 100 characters'),
 });
 
-export { InformationFormValidationSchema , AdressFormValidationSchema};
+export { InformationFormValidationSchema, AdressFormValidationSchema };

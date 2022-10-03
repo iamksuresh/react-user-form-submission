@@ -1,6 +1,11 @@
+/**
+ * Upload image and read as dataURL
+ * Use cropper library for cropping the image
+ * Cropper image is used as avatar
+ */
 import React, { useState, useRef, FC, useEffect } from 'react';
 
-import ReactCrop, { centerCrop, makeAspectCrop, Crop, PixelCrop } from 'react-image-crop';
+import { Crop, PixelCrop } from 'react-image-crop';
 import { canvasPreview } from './canvasPreview';
 import { useDebounceEffect } from '../../hooks/useDebounceEffect';
 
@@ -43,15 +48,12 @@ const ImageUploader: FC<any> = () => {
     [completedCrop, scale, rotate],
   );
 
-  useEffect(() => {
-    console.log('setCompletedCrop ', completedCrop);
-  }, [completedCrop]);
   return (
     <div className="imageUploader">
       <div className="Crop-Controls">
         {imgRef.current === null && (
           <input
-            style={{ opacity: 40, width: 100, height: 100 }}
+            style={{ opacity: 40, width: 200, height: 100, top: '30px', position: 'relative' }}
             type="file"
             accept="image/*"
             onChange={onSelectFile}
@@ -66,20 +68,17 @@ const ImageUploader: FC<any> = () => {
           <>
             <Avatar
               alt="Upload Profile Pic"
-              //style={{ cursor: 'pointer' }}
-              sx={{ width: 150, height: 150 }}
+              sx={{ width: 130, height: 130 }}
             >
               <canvas
                 ref={previewCanvasRef}
                 style={{
-                  // border: '1px solid black',
                   objectFit: 'contain',
-                  width: '150px',
-                  height: '150px', //completedCrop?.height,
+                  width: '120px',
+                  height: '120px',
                 }}
               />
             </Avatar>
-            <h4>Picture</h4>
           </>
         )}
       </div>

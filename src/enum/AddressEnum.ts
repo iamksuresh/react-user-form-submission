@@ -1,5 +1,5 @@
 export enum AddressEnum {
-    CITY = 'Singapore',
-    STATE = 'Singapore',
-    COUNTRY = 'Singapore'
+  CITY = 'Singapore',
+  STATE = 'Singapore',
+  COUNTRY = 'Singapore',
 }

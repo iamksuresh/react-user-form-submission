@@ -5,9 +5,7 @@ import { FallbackProps } from 'react-error-boundary';
  * ErrorFallback component
  * Render component when app crashes or return errors
  */
-export default function ErrorFallback({
-  error,
-}: FallbackProps) {
+export default function ErrorFallback({ error }: FallbackProps) {
   return (
     <div>
       <strong>Error!</strong>
@@ -17,7 +15,6 @@ export default function ErrorFallback({
           <strong>Error:</strong> {error.toString()}
         </div>
       )}
-      
     </div>
   );
 }

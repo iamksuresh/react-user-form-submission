@@ -1,25 +1,39 @@
-import { Box, FormControlLabel, FormGroup, FormHelperText, Typography } from '@mui/material';
-import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
-import { literal, object, string, TypeOf } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { FC, forwardRef, useContext, useEffect, useState } from 'react';
-import { LoadingButton } from '@mui/lab';
+import {  
+  Grid,
+} from '@mui/material';
+import { FC } from 'react';
+import styled from 'styled-components';
 
-import FormInput from '../common/FormInput';
-import { InformationFormValidationSchema } from '../../schema/FormValidationSchema';
-import { RegisterInput } from '../../types';
-import { useParams, useLocation } from 'react-router-dom';
-import { UserContext } from '../../contextProvider/UserContextProvider';
 import InformationForm from './InformationForm';
+import ImageUploader from '../imageUploader';
+import { CommonEnum } from '../../enum/CommonEnum';
 
+const StyledImgLoader = styled(Grid)`
+  display: float;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 'auto';
+`;
+
+const StyledGridContainer = styled(Grid)`
+  display: flex;
+  align-content: flex-end;
+  align-items: center;
+  margin-bottom: 5px;
+`;
 const Information: FC<any> = (props) => {
- 
-
   return (
     <>
-      <Typography variant="h4" component="h1" sx={{ mb: '2rem' }}>
-        Register User Information
-      </Typography>
+      <StyledGridContainer container={true}>
+        <Grid item={true} xs={8} sm={8} md={6} lg={6} xl={6}>
+          <h3>{CommonEnum.REGISTER_USER_INFORMATION}</h3>
+        </Grid>
+        <StyledImgLoader item={true} xs={4} sm={4} md={6} lg={6} xl={6}>
+          <ImageUploader />
+        </StyledImgLoader>
+      </StyledGridContainer>
+
       <InformationForm />
     </>
   );
