@@ -22,10 +22,10 @@ const StyledGridContainer = styled(Grid)`
   align-items: center;
   margin-bottom: 5px;
 `;
-const Information: FC<any> = (props) => {
+const Information: FC = () => {
   return (
     <>
-      <StyledGridContainer container={true}>
+      <StyledGridContainer id="informationContainer" container={true}>
         <Grid item={true} xs={8} sm={8} md={6} lg={6} xl={6}>
           <h3>{CommonEnum.REGISTER_USER_INFORMATION}</h3>
         </Grid>

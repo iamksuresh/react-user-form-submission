@@ -10,11 +10,11 @@ const Address: FC<any> = (props) => {
   const { postalCode } = address;
 
   return (
-    <>
+    <div id="addressContainer">
       <h3>{CommonEnum.REGISTER_USER_ADRESS}</h3>
       <GooglePlaceInputBox />
       {postalCode.length > 0 && <AddressForm />}
-    </>
+    </div>
   );
 };
 

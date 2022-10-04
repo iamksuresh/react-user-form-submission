@@ -44,6 +44,7 @@ const AddressForm: FC<any> = (props) => {
   };
 
   return (
+    <div id="addressForm">
     <FormProvider {...methods}>
       <Box
         component="form"
@@ -56,7 +57,7 @@ const AddressForm: FC<any> = (props) => {
           value={address1}
           required={true}
           fullWidth={true}
-          label="Address Line 1"
+          label={CommonEnum.ADDRESS_1}
           sx={{ mb: 2 }}
         />
 
@@ -65,7 +66,7 @@ const AddressForm: FC<any> = (props) => {
           value={address2}
           required={true}
           fullWidth={true}
-          label="Address Line 2"
+          label={CommonEnum.ADDRESS_2}
           sx={{ mb: 2 }}
         />
 
@@ -73,7 +74,7 @@ const AddressForm: FC<any> = (props) => {
           name="city"
           required={true}
           fullWidth={true}
-          label="City"
+          label={CommonEnum.CITY}
           value={city}
           sx={{ mb: 2 }}
         />
@@ -81,7 +82,7 @@ const AddressForm: FC<any> = (props) => {
           name="state"
           required={true}
           fullWidth={true}
-          label="State"
+          label={CommonEnum.STATE}
           value={state}
           sx={{ mb: 2 }}
         />
@@ -90,7 +91,7 @@ const AddressForm: FC<any> = (props) => {
           name="country"
           required={true}
           fullWidth={true}
-          label="Country"
+          label={CommonEnum.COUNTRY}
           value={country}
           sx={{ mb: 2 }}
         />
@@ -98,7 +99,7 @@ const AddressForm: FC<any> = (props) => {
           name="postalcode"
           required={true}
           fullWidth={true}
-          label="Postal Code"
+          label={CommonEnum.POSTAL_CODE}
           value={postalCode}
           sx={{ mb: 2 }}
         />
@@ -117,6 +118,7 @@ const AddressForm: FC<any> = (props) => {
         )}
       </Box>
     </FormProvider>
+    </div>
   );
 };
 

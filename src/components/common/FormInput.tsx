@@ -27,7 +27,7 @@ const FormInput: FC<IFormInputProps> = ({ name, value, sx, disabled = true, ...o
           value={value}
           sx={{ mb: 2, lg: 4, xl: 4, ...sx }}
           disabled={disabled}
-          helperText={errors?.[name] ? <> {errors?.[name]} </> : ''}
+          helperText={errors?.[name] ? <> {errors?.[name]?.["message"]} </> : ''}
         />
       )}
     />

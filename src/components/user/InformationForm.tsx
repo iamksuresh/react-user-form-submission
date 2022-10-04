@@ -14,13 +14,12 @@ import { RoutesEnum } from '../../enum/RoutesEnum';
 import { useNavigate } from 'react-router-dom';
 import { CommonEnum } from '../../enum/CommonEnum';
 
-const InformationForm: FC<any> = (props) => {
-  const { pathname } = useLocation();
-  const { userInformationSubmitHandler, userDetails } = useContext(UserContext);
-
-  const { name: contextName, password: contextPassword, email: contextEmail } = userDetails;
+const InformationForm: FC = () => {
+  const { pathname }=  useLocation();
   const navigate = useNavigate();
-
+  const { userInformationSubmitHandler, userDetails } = useContext(UserContext);
+  const { name: contextName, password: contextPassword, email: contextEmail } = userDetails;
+  
   const [name, setName] = useState(contextName);
   const [email, setEmail] = useState(contextEmail);
   const [password, setPassword] = useState(contextPassword);
@@ -58,8 +57,8 @@ const InformationForm: FC<any> = (props) => {
   };
 
   return (
-    <>
-      <FormProvider {...methods}>
+    <div id="informationForm">
+      <FormProvider  {...methods}>
         <Box
           component="form"
           noValidate={true}
@@ -73,14 +72,14 @@ const InformationForm: FC<any> = (props) => {
             required={true}
             fullWidth={true}
             disabled={shldDisable}
-            label="Name"
+            label={CommonEnum.NAME}
           />
 
           <FormInput
             name="email"
             required={true}
             fullWidth={true}
-            label="Email Address"
+            label={CommonEnum.EMAIL_ADDRESS}
             type="email"
             value={email}
             disabled={shldDisable}
@@ -91,7 +90,7 @@ const InformationForm: FC<any> = (props) => {
             name="password"
             required={true}
             fullWidth={true}
-            label="Password"
+            label={CommonEnum.PASSWORD}
             type="password"
             value={password}
             disabled={shldDisable}
@@ -116,7 +115,7 @@ const InformationForm: FC<any> = (props) => {
           )}
         </Box>
       </FormProvider>
-    </>
+    </div>
   );
 };
 

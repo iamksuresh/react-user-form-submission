@@ -5,7 +5,7 @@ import { CommonEnum } from '../../enum/CommonEnum';
 const StyledHeader = styled.h2`
   justify-content: center;
   display: flex;
-  color: white;
+  color: #107adb;
 `;
 
 const Header: React.FC = () => (

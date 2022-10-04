@@ -37,7 +37,7 @@ const GooglePlaceInputBox: FC<any> = (props) => {
   }, []);
 
   return (
-    <div style={{ marginBottom: '2rem' }}>
+    <div id="placeSearchBox" style={{ marginBottom: '2rem' }}>
       <InputLabel style={{ display: 'inline' }}>{CommonEnum.SEARCH_ADDRESS}</InputLabel>
       <input style={{ width: '50%' }} ref={inputRef} />
     </div>

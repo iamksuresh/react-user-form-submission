@@ -6,7 +6,6 @@ import React, { useEffect, useState } from 'react';
 
 import { BrowserRouter } from 'react-router-dom';
 import Header from './components/header';
-// import WebSocketContextProvider from "./contextProvider/WsContextProvider";
 import AppRoutes from './components/routes/AppRoutes';
 
 function App() {
