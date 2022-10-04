@@ -1,10 +1,12 @@
 # React - Typescript - Google Places
 ## React based SPA based application using Google autocomplete API
 
-#### readme - 
+#### readme - https://github.com/iamksuresh/react-user-form-submission#readme
 
 #### screenshots
--   Folder structure - 
+-   Project structure -  https://github.com/iamksuresh/react-user-form-submission/blob/master/screenshots/UI-project-structure.png
+-   User information form - https://github.com/iamksuresh/react-user-form-submission/blob/master/screenshots/user-information.png
+-   User Address form - https://github.com/iamksuresh/react-user-form-submission/blob/master/screenshots/address_auto-populated.png
 
 ## Features
 - React, Typescript based responsive SPA
@@ -49,19 +51,6 @@ cd <root-folder>
 npm i (if not already done)
 npm test
 ```
-## Test coverage
-
-
-
-
-## Improvements
-- UI performance is greatly improved using throttling of FX data for configurable intervals.
--- FX prices are collected until defined interval
--- ASK - Lowest ASK value is updated in the UI dashboard
--- BID - Highest BID value is updated in the UI dashboard
-- Handling of multiple instruments
--- This is done at the store level using react Context API
--- Clear separation of concers between subscribing and processing of incoming individual FX pairs data
 
 ## Good to know 
 - API to upload form data - https://webhook.site/c5c76877-e804-4b4d-b9eb-fdb2c8077ad9
