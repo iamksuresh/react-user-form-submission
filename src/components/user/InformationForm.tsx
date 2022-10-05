@@ -15,11 +15,11 @@ import { useNavigate } from 'react-router-dom';
 import { CommonEnum } from '../../enum/CommonEnum';
 
 const InformationForm: FC = () => {
-  const { pathname }=  useLocation();
+  const { pathname } = useLocation();
   const navigate = useNavigate();
   const { userInformationSubmitHandler, userDetails } = useContext(UserContext);
   const { name: contextName, password: contextPassword, email: contextEmail } = userDetails;
-  
+
   const [name, setName] = useState(contextName);
   const [email, setEmail] = useState(contextEmail);
   const [password, setPassword] = useState(contextPassword);
@@ -58,7 +58,7 @@ const InformationForm: FC = () => {
 
   return (
     <div id="informationForm">
-      <FormProvider  {...methods}>
+      <FormProvider {...methods}>
         <Box
           component="form"
           noValidate={true}

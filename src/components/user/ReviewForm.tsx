@@ -7,6 +7,7 @@ import { UserContext } from '../../contextProvider/UserContextProvider';
 import { CommonEnum } from '../../enum/CommonEnum';
 import { RoutesEnum } from '../../enum/RoutesEnum';
 import { FormService } from '../../services/FormService';
+import { hashPassword } from '../../utils';
 import AddressForm from './AddressForm';
 import InformationForm from './InformationForm';
 
@@ -22,14 +23,14 @@ const ReviewForm: FC<any> = (props) => {
       await FormService.submitUserForm({
         ...userDetails,
         ...address,
+        password : hashPassword(userDetails.password)
       });
       resetData();
       // navigate back to Landing page
       navigate(RoutesEnum.USER);
     } catch (e) {
-      throw e
+      throw e;
     }
-    
   };
   return (
     <>

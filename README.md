@@ -14,6 +14,7 @@
 - React context api for store management
 - Using cropper for profile picture update
 - Axios for uploading form data to backend
+- Hashing password, Uploading image to Back end API
 - Google places query params ( fields, types ) are configurable and can be added throough env variables
 - For available query params options , pl refer - https://developers.google.com/maps/documentation/javascript/place-autocomplete
 
@@ -21,9 +22,9 @@
 -   Addresses are auto filled in form using google Autocomplete API. Form Editing is restricted
 -   Back navigations and edit form are to be implemented
 -   Cropper is used to upload image as to be used as avatar.
--   Image is not uploaded to backend and Cancel/ modify image file to be implemented
+-   Cancel/ modify image file to be implemented
 -   Address search is currently bound to Singapore (sg) only. 
--   City, Country and State values are predefined
+-   City, Country and State values are predefined to 'Singapore'
 
 ## Technology stack
 -   React, Typescript, Context API, Google Places API , react cropper library
@@ -57,3 +58,7 @@ npm test
 - Testing strategy is implemented but few cases are to be covered.
 - UI is demo only and further improvements are advised.
 
+### Sample Form upload Contract
+```sh 
+{"name":"testUser","email":"sbds@y.com","password":"$2a$10$jYKYt1RnNsM1OwRJTYSZ1.PHtuDc9iDKGuwf5IYek66DSJVLDm3W.","address1":"Bedok Mall","address2":"311 New Upper Changi Rd","postalCode":"467360","city":"Singapore","state":"Singapore","country":"Singapore"}
+```

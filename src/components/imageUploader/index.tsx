@@ -1,3 +1,4 @@
+// tslint:disable jsx-no-lambda
 /**
  * Upload image and read as dataURL
  * Use cropper library for cropping the image
@@ -13,9 +14,11 @@ import 'react-image-crop/dist/ReactCrop.css';
 import ImgPop from './ImgPop';
 import { Avatar, Button } from '@mui/material';
 import { CommonEnum } from '../../enum/CommonEnum';
+import { ImageUploadService } from '../../services/ImageUploadService';
 
 const ImageUploader: FC<any> = () => {
   const [imgSrc, setImgSrc] = useState('');
+  const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
   const previewCanvasRef = useRef<HTMLCanvasElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
   const uploaderRef = useRef<HTMLInputElement>(null);
@@ -25,14 +28,29 @@ const ImageUploader: FC<any> = () => {
   const [rotate, setRotate] = useState(0);
   const [aspect, setAspect] = useState<number | undefined>(16 / 9);
 
-  function onSelectFile(e: React.ChangeEvent<HTMLInputElement>) {
+  const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       setCrop(undefined); // Makes crop preview update between images.
       const reader = new FileReader();
       reader.addEventListener('load', () => setImgSrc(reader?.result?.toString() || ''));
       reader.readAsDataURL(e.target.files[0]);
+      setSelectedFile(e.target.files[0]);
     }
-  }
+  };
+
+  useEffect(() => {
+    if (selectedFile) {
+      ImgUpload();
+    }
+  }, [selectedFile]);
+
+  const ImgUpload = async () => {
+    const formData = new FormData();
+    if (selectedFile) {
+      formData.append('selectedFile', selectedFile);
+      await ImageUploadService.uploadImage(formData);
+    }
+  };
 
   useDebounceEffect(
     async () => {
@@ -56,7 +74,7 @@ const ImageUploader: FC<any> = () => {
         {imgRef.current === null && (
           <>
             <Button
-              onClick={()=> uploaderRef?.current?.click()}
+              onClick={() => uploaderRef?.current?.click()}
               color="primary"
               variant="contained"
             >
@@ -64,7 +82,14 @@ const ImageUploader: FC<any> = () => {
             </Button>
 
             <input
-              style={{ display:"none", opacity: 40, width: 200, height: 100, top: '30px', position: 'relative' }}
+              style={{
+                display: 'none',
+                opacity: 40,
+                width: 200,
+                height: 100,
+                top: '30px',
+                position: 'relative',
+              }}
               type="file"
               accept="image/*"
               onChange={onSelectFile}

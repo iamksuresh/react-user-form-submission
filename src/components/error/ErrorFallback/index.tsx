@@ -6,7 +6,6 @@ import { FallbackProps } from 'react-error-boundary';
  * Render component when app crashes or return errors
  */
 export default function ErrorFallback({ error }: FallbackProps) {
-  console.log('error ', error)
   return (
     <div>
       <strong>Error!</strong>

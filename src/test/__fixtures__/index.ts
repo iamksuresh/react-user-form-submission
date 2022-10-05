@@ -1,6 +1,6 @@
 export const contextProps = {
-  userInformationSubmitHandler: () => {},
-  handleGoogleAddress : () => {},
+  userInformationSubmitHandler: jest.fn(),
+  handleGoogleAddress: jest.fn(),
   userDetails: {
     name: '',
     email: '',
@@ -23,7 +23,6 @@ export const setupGoogleMock = () => {
         Autocomplete: class {
           addListener = jest.fn();
         },
-        AutocompleteService: class {},
       },
     } as any,
   };

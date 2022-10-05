@@ -26,16 +26,16 @@ describe('Test User Address Form', () => {
         <AddressForm />
       </BrowserRouter>,
       {
-        contextProps
+        contextProps,
       },
     );
-    
+
     expect(screen.getByText(CommonEnum.POSTAL_CODE)).toBeInTheDocument();
     expect(screen.getByText(CommonEnum.COUNTRY)).toBeInTheDocument();
     expect(screen.getByText(CommonEnum.STATE)).toBeInTheDocument();
     expect(screen.getByText(CommonEnum.CITY)).toBeInTheDocument();
     expect(screen.getByText(CommonEnum.ADDRESS_1)).toBeInTheDocument();
-    
+
     expect(screen.getByText(CommonEnum.ADDRESS_2)).toBeInTheDocument();
   });
 });

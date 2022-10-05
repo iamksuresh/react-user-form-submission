@@ -22,8 +22,7 @@ const AddressForm: FC<any> = (props) => {
 
   const { postalCode, address1, address2, city, state, country } = address;
 
-  const methods = useForm<RegisterAddressInput>({
-  });
+  const methods = useForm<RegisterAddressInput>({});
 
   const {
     reset,
@@ -45,79 +44,79 @@ const AddressForm: FC<any> = (props) => {
 
   return (
     <div id="addressForm">
-    <FormProvider {...methods}>
-      <Box
-        component="form"
-        noValidate={true}
-        autoComplete="off"
-        onSubmit={handleSubmit(onSubmitHandler)}
-      >
-        <FormInput
-          name="address1"
-          value={address1}
-          required={true}
-          fullWidth={true}
-          label={CommonEnum.ADDRESS_1}
-          sx={{ mb: 2 }}
-        />
+      <FormProvider {...methods}>
+        <Box
+          component="form"
+          noValidate={true}
+          autoComplete="off"
+          onSubmit={handleSubmit(onSubmitHandler)}
+        >
+          <FormInput
+            name="address1"
+            value={address1}
+            required={true}
+            fullWidth={true}
+            label={CommonEnum.ADDRESS_1}
+            sx={{ mb: 2 }}
+          />
 
-        <FormInput
-          name="address2"
-          value={address2}
-          required={true}
-          fullWidth={true}
-          label={CommonEnum.ADDRESS_2}
-          sx={{ mb: 2 }}
-        />
+          <FormInput
+            name="address2"
+            value={address2}
+            required={true}
+            fullWidth={true}
+            label={CommonEnum.ADDRESS_2}
+            sx={{ mb: 2 }}
+          />
 
-        <FormInput
-          name="city"
-          required={true}
-          fullWidth={true}
-          label={CommonEnum.CITY}
-          value={city}
-          sx={{ mb: 2 }}
-        />
-        <FormInput
-          name="state"
-          required={true}
-          fullWidth={true}
-          label={CommonEnum.STATE}
-          value={state}
-          sx={{ mb: 2 }}
-        />
+          <FormInput
+            name="city"
+            required={true}
+            fullWidth={true}
+            label={CommonEnum.CITY}
+            value={city}
+            sx={{ mb: 2 }}
+          />
+          <FormInput
+            name="state"
+            required={true}
+            fullWidth={true}
+            label={CommonEnum.STATE}
+            value={state}
+            sx={{ mb: 2 }}
+          />
 
-        <FormInput
-          name="country"
-          required={true}
-          fullWidth={true}
-          label={CommonEnum.COUNTRY}
-          value={country}
-          sx={{ mb: 2 }}
-        />
-        <FormInput
-          name="postalcode"
-          required={true}
-          fullWidth={true}
-          label={CommonEnum.POSTAL_CODE}
-          value={postalCode}
-          sx={{ mb: 2 }}
-        />
-        {!pathname.includes(RoutesEnum.FORM_SUBMIT) && (
-          <div style={{ textAlign: 'center' }}>
-            <LoadingButton
-              variant="contained"
-              size="medium"
-              type="submit"
-              sx={{ py: '0.8rem', mt: '1rem' }}
-              disabled={Object.values(address).length === 0}
-            >
-              {CommonEnum.REVIEW_DETAILS}
-            </LoadingButton>
-          </div>
-        )}
-      </Box>
-    </FormProvider>
+          <FormInput
+            name="country"
+            required={true}
+            fullWidth={true}
+            label={CommonEnum.COUNTRY}
+            value={country}
+            sx={{ mb: 2 }}
+          />
+          <FormInput
+            name="postalcode"
+            required={true}
+            fullWidth={true}
+            label={CommonEnum.POSTAL_CODE}
+            value={postalCode}
+            sx={{ mb: 2 }}
+          />
+          {!pathname.includes(RoutesEnum.FORM_SUBMIT) && (
+            <div style={{ textAlign: 'center' }}>
+              <LoadingButton
+                variant="contained"
+                size="medium"
+                type="submit"
+                sx={{ py: '0.8rem', mt: '1rem' }}
+                disabled={Object.values(address).length === 0}
+              >
+                {CommonEnum.REVIEW_DETAILS}
+              </LoadingButton>
+            </div>
+          )}
+        </Box>
+      </FormProvider>
     </div>
   );
 };

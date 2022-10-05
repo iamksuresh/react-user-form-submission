@@ -1,4 +1,4 @@
-import {  number, object, string } from 'zod';
+import { number, object, string } from 'zod';
 
 const InformationFormValidationSchema = object({
   name: string().min(1, 'Name is required').max(32, 'Name must be less than 100 characters'),

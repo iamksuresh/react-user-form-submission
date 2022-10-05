@@ -29,7 +29,7 @@ const GooglePlaceInputBox: FC<any> = (props) => {
       options,
     );
 
-    autoCompleteRef.current.addListener('place_changed', async function () {
+    autoCompleteRef.current.addListener('place_changed', async () => {
       // fetch details of selected address
       const { formatted_address, name } = await autoCompleteRef.current.getPlace();
       handleGoogleAddress({ formatted_address, name });

@@ -1,29 +1,28 @@
+// tslint:disable jsx-no-lambda
 import { FC, useState } from 'react';
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import ReactCrop, { centerCrop, makeAspectCrop, Crop, PixelCrop } from 'react-image-crop';
 
 const ImgPop: FC<any> = ({ imgSrc, setCompletedCrop, imgRef }) => {
-
   const [open, setOpen] = useState(true);
   const [crop, setCrop] = useState<Crop>();
   const [aspect, setAspect] = useState<number | undefined>(16 / 9);
 
   // This is to demonstate how to make and center a % aspect crop
   // which is a bit trickier so we use some helper functions.
-  const centerAspectCrop = (mediaWidth: number, mediaHeight: number, aspect: number) => {
+  const centerAspectCrop = (mediaWidth: number, mediaHeight: number, aspct: number) => {
     return centerCrop(
       makeAspectCrop(
         {
           unit: '%',
           width: 90,
         },
-        aspect,
+        aspct,
         mediaWidth,
         mediaHeight,
       ),
@@ -45,7 +44,6 @@ const ImgPop: FC<any> = ({ imgSrc, setCompletedCrop, imgRef }) => {
 
   return (
     <div>
-      
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Crop Image</DialogTitle>
         <DialogContent>
@@ -55,12 +53,7 @@ const ImgPop: FC<any> = ({ imgSrc, setCompletedCrop, imgRef }) => {
             onComplete={(c) => setCompletedCrop(c)}
             aspect={aspect}
           >
-            <img
-              ref={imgRef}
-              alt="Crop me"
-              src={imgSrc}
-              onLoad={onImageLoad}
-            />
+            <img ref={imgRef} alt="Crop me" src={imgSrc} onLoad={onImageLoad} />
           </ReactCrop>
         </DialogContent>
         <DialogActions>

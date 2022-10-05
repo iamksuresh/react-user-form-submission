@@ -15,7 +15,7 @@ describe('Test User Information Form', () => {
         contextProps,
       },
     );
-    const containerEle = container.querySelector('#informationForm');   
+    const containerEle = container.querySelector('#informationForm');
     expect(containerEle).toBeInTheDocument();
   });
 
@@ -28,7 +28,7 @@ describe('Test User Information Form', () => {
         contextProps,
       },
     );
-    
+
     expect(screen.getByText(CommonEnum.NAME)).toBeInTheDocument();
     expect(screen.getByText(CommonEnum.EMAIL_ADDRESS)).toBeInTheDocument();
     expect(screen.getByText(CommonEnum.PASSWORD)).toBeInTheDocument();

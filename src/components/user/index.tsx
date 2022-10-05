@@ -4,7 +4,7 @@
  */
 import React, { FC } from 'react';
 import { Box } from '@mui/material';
-import {  Outlet } from 'react-router';
+import { Outlet } from 'react-router';
 import UserContextProvider, { UserContext } from '../../contextProvider/UserContextProvider';
 
 import styled from 'styled-components';

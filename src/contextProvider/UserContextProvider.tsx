@@ -2,12 +2,7 @@
  * Wraps the User container and facilitates data acess - like store manager
  * clients directly access data from this context
  */
-import {
-  createContext,
-  ReactNode,
-  useMemo,
-  useState,
-} from 'react';
+import { createContext, ReactNode, useMemo, useState } from 'react';
 import { SubmitHandler } from 'react-hook-form';
 import { AddressEnum } from '../enum/AddressEnum';
 import { IAddress, IUser, RegisterInput } from '../types';

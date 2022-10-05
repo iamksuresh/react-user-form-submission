@@ -1,3 +1,4 @@
+// tslint:disable jsx-no-lambda
 /**
  * Form Input element.
  * constraints and usage can be controllerd by props

@@ -1,4 +1,4 @@
-import { FC, useContext,} from 'react';
+import { FC, useContext } from 'react';
 
 import { UserContext } from '../../contextProvider/UserContextProvider';
 import { CommonEnum } from '../../enum/CommonEnum';
